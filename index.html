@@ -1,0 +1,28 @@
+<html>
+    <script>
+        function sum(){
+            const a =document.getElementById("f").value ;
+            const b =document.getElementById("s").value ;
+            // const c = parseInt(a)+ parseInt(b);
+            const ele = document.getElementById("final")
+            //console.log(ele);
+            //ele.innerHTML= "sum is" +c ; 
+            fetch("http://localhost:3000/sum?a=" +a +"&b=" +b)
+                .then(function(response){
+                    response.text() 
+                    .then(function(ans) {      
+                        ele.innerHTML = "Sum is: " + ans;
+                    })
+                });
+        }   
+        </script>
+    <body>
+        <input type="text" placeholder="first num" id = "f"><br> 
+        <input type="text" placeholder="second num" id = "s"> <br>
+        <button onclick="sum()">calculate</button>
+        <div id = "final">
+        </div>
+
+    </body>
+    
+</html>
