@@ -1,6 +1,13 @@
 <html>
     <script>
-        function sum(){
+/*  ippudu normal inputs istham, next calcualte sum kodtham appude neeku, output osthadi, 
+ippudu ala kaakunda, direct input iyyangane... sum calculate kavali ante etla? 
+input teskune deggara oninput event vaadaochu, kaani atla change kaangane itla requset pothai,
+enni saarlu ani request pamputhav server ki??? chala response osthai slow aythadi sometimes, 
+ala avvakunda undadanki  timedelay cheyaochu, 20 sec ki em aina change kosam wait chesthadi, 
+aa 20secs ayipongane sum calulcaye cheyadam, so time delay vaadaochu, ala vaadaniki, 
+debouncing, throtlling vaadukoch simple....  */
+        /* function sum(){
             const a =document.getElementById("f").value ;
             const b =document.getElementById("s").value ;
             // const c = parseInt(a)+ parseInt(b);
@@ -14,7 +21,18 @@
                         ele.innerHTML = "Sum is: " + ans;
                     })
                 });
-        }   
+        }   without sync await, but fetchh settimwout are asynchronocus funtions */ 
+
+        async function sum(){
+            const a =document.getElementById("f").value ;
+            const b =document.getElementById("s").value ;
+            const ele = document.getElementById("final")
+            const response = await fetch("http://localhost:3000/sum?a=" +a +"&b=" +b);
+            const ans =await response.text();
+            ele.innerHTML = "Sum is: " + ans;
+
+        }
+
         </script>
     <body>
         <input type="text" placeholder="first num" id = "f"><br> 
@@ -22,7 +40,7 @@
         <button onclick="sum()">calculate</button>
         <div id = "final">
         </div>
-
+        
     </body>
-    
+ 
 </html>
